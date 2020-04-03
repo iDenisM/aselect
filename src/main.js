@@ -1,3 +1,3 @@
-import ASelect from './aselect';
+import { ASelect } from './aselect';
 
 const aselect = window.aselect || new ASelect();
