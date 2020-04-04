@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "build": "rollup --config",
-    "example": "webpack --config webpack.config.example.js"
+    "example": "webpack --config webpack.config.example.js",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
