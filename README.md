@@ -1,0 +1,1 @@
+This is a library that creates lite and accessible custom selects.
