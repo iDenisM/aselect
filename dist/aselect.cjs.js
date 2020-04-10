@@ -1,10 +1,15 @@
-import { version } from '../package.json';
-import { getSelects } from './aselect.utils';
+'use strict';
 
-export const ASelect = function() {
+var version = "2.0.0";
+
+const getSelects = function(select) {
+  document.querySelector(select);
+};
+
+const ASelect = function() {
   
   this._btw();
-}
+};
 
 ASelect.prototype = {
   _init: function() {
@@ -23,4 +28,6 @@ ASelect.prototype = {
     this.select = getSelects(select);
     if (!this.select) console.warn('You have passed a bad selector for the select');
   }
-}
+};
+
+const aselect = window.aselect || new ASelect();
