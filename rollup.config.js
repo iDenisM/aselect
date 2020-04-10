@@ -1,29 +1,62 @@
 import json from '@rollup/plugin-json';
 import {terser} from 'rollup-plugin-terser';
 
-export default {
+let config1 = {
   input: 'src/main.js',
   output: [
     {
-      file: 'dist/aselect.cjs.js',
-      format: 'cjs'
+      file: "dist/aselect.amd.js",
+      format: "amd"
     },
     {
-      file: 'dist/aselect.cjs.min.js',
-      format: 'cjs',
+      file: "dist/aselect.amd.min.js",
+      format: "amd",
+      plugins: [terser()]
+    },
+
+    {
+      file: "dist/aselect.iife.js",
+      name: "LazyLoad",
+      format: "iife"
+    },
+    {
+      file: "dist/aselect.iife.min.js",
+      name: "LazyLoad",
+      format: "iife",
       plugins: [terser()]
     },
     {
-      file: 'dist/aselect.umd.js',
-      format: 'umd',
-      name: 'aselect'
+      file: "dist/aselect.js",
+      name: "LazyLoad",
+      format: "umd"
     },
     {
-      file: 'dist/aselect.umd.min.js',
-      format: 'umd',
-      name: 'aselect',
+      file: "dist/aselect.min.js",
+      name: "LazyLoad",
+      format: "umd",
       plugins: [terser()]
     }
   ],
-  plugins: [json()]
+  plugins: [
+    json(),
+    resolve(),
+    babel({
+      exclude: "node_modules/**"
+    })
+  ]
 };
+
+let config2 = {
+  input: "src/main.js",
+  output: [
+    {
+      file: "dist/aselect.esm.js",
+      format: "esm"
+    },
+    {
+      file: "dist/aselect.esm.min.js",
+      format: "esm",
+      plugins: [terser()]
+    }
+  ]
+}
