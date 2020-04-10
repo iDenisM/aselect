@@ -1,5 +1,7 @@
 import json from '@rollup/plugin-json';
-import {terser} from 'rollup-plugin-terser';
+import { terser } from "rollup-plugin-terser";
+import resolve from "@rollup/plugin-node-resolve";
+import babel from "rollup-plugin-babel";
 
 let config1 = {
   input: 'src/main.js',
@@ -58,5 +60,8 @@ let config2 = {
       format: "esm",
       plugins: [terser()]
     }
-  ]
+  ],
+  plugins: [json()]
 }
+
+module.exports = [config1,config2];
