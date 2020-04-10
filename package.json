@@ -1,30 +1,47 @@
 {
   "name": "aselect",
   "version": "2.0.0",
-  "description": "",
-  "private": true,
+  "description": "Fast, light and fully accessible custom select.",
   "scripts": {
-    "build": "rollup --config",
-    "example": "webpack --config webpack.config.example.js",
-    "test": "jest"
+    "build": "rollup -c",
+    "dev": "rollup -c --watch",
+    "test": "jest --coverage",
+    "devtest": "jest --watch"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Denis Mitiliuc",
+    "email": "denis.mitiliuc@gmail.com"
+  },
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-transform-modules-commonjs": "^7.9.0",
     "@babel/plugin-transform-object-assign": "^7.8.3",
-    "@babel/preset-env": "^7.9.0",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
     "@rollup/plugin-json": "^4.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
+    "acorn": ">=6.4.1",
+    "babel-jest": "^25.3.0",
+    "babel-loader": "^8.1.0",
     "jest": "^25.2.3",
+    "kind-of": ">=6.0.3",
+    "minimist": ">=1.2.3",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-terser": "^5.3.0",
-    "minimist": ">=1.2.3",
-    "acorn": ">=6.4.1",
-    "kind-of": ">=6.0.3",
-    "serialize-javascript": ">=2.1.1"
-  },
-  "dependencies": {
+    "serialize-javascript": ">=2.1.1",
     "rollup": "^2.2.0"
+  },
+  "dependencies": {},
+  "keywords": [
+    "select",
+    "vanilla",
+    "performance",
+    "no-jquery"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iDenisM/aselect"
   }
 }
