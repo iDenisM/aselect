@@ -1,7 +1,7 @@
-import { getSelect } from '../src/aselect.utils';
+import { getSelect, getSelects } from '../src/aselect.utils';
 
 // Mock the select
-document.body.innerHTML = `<select name="day" class="select-month" id="day">
+document.body.innerHTML = `<select name="day" class="select select-day" id="day">
     <option selected="selected" value>Day</option>
     <option value="01">01</option>
     <option value="02">02</option>
@@ -14,7 +14,7 @@ document.body.innerHTML = `<select name="day" class="select-month" id="day">
     <option value="09">09</option>
     <option value="10">10</option>
   </select>
-  <select name="month" class="select-month" id="month">
+  <select name="month" class="select select-month" id="month">
     <option selected="selected" value>Day</option>
     <option value="01">01</option>
     <option value="02">02</option>
@@ -29,7 +29,7 @@ document.body.innerHTML = `<select name="day" class="select-month" id="day">
     <option value="11">11</option>
     <option value="12">12</option>
   </select>
-  <select name="year" class="select-month" id="year">
+  <select name="year" class="select select-year" id="year">
     <option selected="selected" value>Day</option>
     <option value="2001">2001</option>
     <option value="2002">2002</option>
@@ -45,19 +45,27 @@ document.body.innerHTML = `<select name="day" class="select-month" id="day">
     <option value="2012">2012</option>
   </select>`;
 
-test('Get select by passing class name', () => {
-  expect(getSelect('.select-month')).toBeDefined();
-})
+describe('Try get the select element using different types of selectors', () => {
+  it('Get select by passing class name', () => {
+    expect(getSelect('.select-month')).toBeDefined();
+  })
+  
+  it('Get select by passing id name', () => {
+    expect(getSelect('#month')).toBeDefined();
+  })
+  
+  it('Get select by passing DOM element', () => {
+    const domElement = document.getElementById('month');
+    expect(getSelect(domElement)).toBeDefined();
+  })
+  
+  it('Get select by passing tagname', () => {
+    expect(getSelect('select')).toBeDefined();
+  })
+});
 
-test('Get select by passing id name', () => {
-  expect(getSelect('#month')).toBeDefined();
-})
-
-test('Get select by passing DOM element', () => {
-  const domElement = document.getElementById('month');
-  expect(getSelect(domElement)).toBeDefined();
-})
-
-test('Get select by passing tagname', () => {
-  expect(getSelect('select')).toBeDefined();
-})
+describe('Try get all the selects using different types of selectors', () => {
+  it('Selects list should be bigger the zero', () => {
+    expect(getSelects('.select').length).toBeGreaterThanOrEqual(0);
+  })
+});
