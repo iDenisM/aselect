@@ -1,5 +1,5 @@
 import { version } from '../package.json';
-import { getSelects } from './aselect.utils';
+import { getSelect } from './aselect.utils';
 
 export const ASelect = function() {
   
@@ -20,7 +20,7 @@ ASelect.prototype = {
 
   },
   _crSelect: function(select) {
-    this.select = getSelects(select);
+    this.select = getSelect(select);
     if (!this.select) console.warn('You have passed a bad selector for the select');
   }
 }
