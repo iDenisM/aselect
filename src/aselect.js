@@ -11,10 +11,10 @@ ASelect.prototype = {
     this._btw();
   },
   _btw: function() {
-    window.aselect = this.as = {};
-    this.as.version = `v${version}`;
-    this.as.create = this._crSelect.bind(this);
-    this.as.createAll = this._crAll.bind(this);
+    // window.aselect = this.as = {};
+    // this.as.version = `v${version}`;
+    // this.as.create = this._crSelect.bind(this);
+    // this.as.createAll = this._crAll.bind(this);
   },
   _crAll: function(select) {
 

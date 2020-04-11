@@ -9,7 +9,8 @@
     "build": "rollup -c",
     "dev:build": "rollup -c --watch",
     "test": "jest --coverage",
-    "dev:test": "jest --watch"
+    "dev:test": "jest --watch",
+    "start": "babel-node ./src"
   },
   "author": {
     "name": "Denis Mitiliuc",
@@ -18,10 +19,14 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
     "@babel/plugin-transform-object-assign": "^7.8.3",
-    "@babel/preset-env": "^7.9.0",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
     "@rollup/plugin-json": "^4.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
+    "babel-jest": "^25.3.0",
+    "babel-loader": "^8.1.0",
     "jest": "^25.1.0",
     "rollup": "^1.32.1",
     "rollup-plugin-babel": "^4.4.0",

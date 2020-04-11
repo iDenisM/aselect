@@ -1,4 +1,6 @@
 module.exports = {
-  //verbose: true,
-  testMatch: ["**/__tests__/*.js"]
+  verbose: true,
+  setupFiles: [
+    "./jest-setup.js"
+  ]
 };
