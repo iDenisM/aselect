@@ -4,7 +4,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import babel from "rollup-plugin-babel";
 
 let config1 = {
-  input: 'src/main.js',
+  input: 'src/aselect.js',
   output: [
     {
       file: "dist/aselect.amd.js",
@@ -49,7 +49,7 @@ let config1 = {
 };
 
 let config2 = {
-  input: "src/main.js",
+  input: "src/aselect.js",
   output: [
     {
       file: "dist/aselect.esm.js",

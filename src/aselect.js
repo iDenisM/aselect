@@ -1,26 +1,22 @@
 import { version } from '../package.json';
-import { getSelect } from './aselect.utils';
+import { getSelect, getSelects } from './aselect.utils';
 
 export const ASelect = function() {
-  
-  this._btw();
 }
 
 ASelect.prototype = {
-  _init: function() {
-    this._btw();
+  version: `v${version}`,
+  create: function(selector) {
+    let select = getSelect(selector);
+    if (!select) return false;
   },
-  _btw: function() {
-    // window.aselect = this.as = {};
-    // this.as.version = `v${version}`;
-    // this.as.create = this._crSelect.bind(this);
-    // this.as.createAll = this._crAll.bind(this);
-  },
-  _crAll: function(select) {
-
-  },
-  _crSelect: function(select) {
-    this.select = getSelect(select);
-    if (!this.select) console.warn('You have passed a bad selector for the select');
+  createAll: function(selects) {
+    getSelects(selects).forEach(select => {
+      this.create(select);
+    })
   }
+}
+
+if (typeof window !== "undefined") {
+  window.aselect = window.aselect || ASelect;
 }

@@ -1,31 +1,33 @@
 var version = "2.0.0";
 
-const getSelects = function(select) {
-  document.querySelector(select);
+const getSelect = function(select) {
+  if (select instanceof HTMLElement) return select;
+  return document.querySelector(select);
+};
+
+const getSelects = function(selects) {
+  if (selects instanceof NodeList) return selects;
+  return document.querySelectorAll(selects);
 };
 
 const ASelect = function() {
-  
-  this._btw();
 };
 
 ASelect.prototype = {
-  _init: function() {
-    this._btw();
+  version: `v${version}`,
+  create: function(selector) {
+    let select = getSelect(selector);
+    if (!select) return false;
   },
-  _btw: function() {
-    window.aselect = this.as = {};
-    this.as.version = `v${version}`;
-    this.as.create = this._crSelect.bind(this);
-    this.as.createAll = this._crAll.bind(this);
-  },
-  _crAll: function(select) {
-
-  },
-  _crSelect: function(select) {
-    this.select = getSelects(select);
-    if (!this.select) console.warn('You have passed a bad selector for the select');
+  createAll: function(selects) {
+    getSelects(selects).forEach(select => {
+      this.create(select);
+    });
   }
 };
 
-const aselect = window.aselect || new ASelect();
+if (typeof window !== "undefined") {
+  window.aselect = window.aselect || ASelect;
+}
+
+export { ASelect };

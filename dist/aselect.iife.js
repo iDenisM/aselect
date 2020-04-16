@@ -1,32 +1,39 @@
-(function () {
+var LazyLoad = (function (exports) {
   'use strict';
 
   var version = "2.0.0";
 
-  var getSelects = function getSelects(select) {
-    document.querySelector(select);
+  var getSelect = function getSelect(select) {
+    if (select instanceof HTMLElement) return select;
+    return document.querySelector(select);
+  };
+  var getSelects = function getSelects(selects) {
+    if (selects instanceof NodeList) return selects;
+    return document.querySelectorAll(selects);
   };
 
-  var ASelect = function ASelect() {
-    this._btw();
-  };
+  var ASelect = function ASelect() {};
   ASelect.prototype = {
-    _init: function _init() {
-      this._btw();
+    version: "v".concat(version),
+    create: function create(selector) {
+      var select = getSelect(selector);
+      if (!select) return false;
     },
-    _btw: function _btw() {
-      window.aselect = this.as = {};
-      this.as.version = "v".concat(version);
-      this.as.create = this._crSelect.bind(this);
-      this.as.createAll = this._crAll.bind(this);
-    },
-    _crAll: function _crAll(select) {},
-    _crSelect: function _crSelect(select) {
-      this.select = getSelects(select);
-      if (!this.select) console.warn('You have passed a bad selector for the select');
+    createAll: function createAll(selects) {
+      var _this = this;
+
+      getSelects(selects).forEach(function (select) {
+        _this.create(select);
+      });
     }
   };
 
-  var aselect = window.aselect || new ASelect();
+  if (typeof window !== "undefined") {
+    window.aselect = window.aselect || ASelect;
+  }
 
-}());
+  exports.ASelect = ASelect;
+
+  return exports;
+
+}({}));
