@@ -7,3 +7,7 @@ export const getSelects = function(selects) {
   if (selects instanceof NodeList) return selects;
   return document.querySelectorAll(selects);
 }
+
+export const insertAfter = function(node, child) {
+  child.parentNode.insertBefore(node, child.nextSibling);
+}

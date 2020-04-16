@@ -1,7 +1,9 @@
 import { version } from '../package.json';
-import { getSelect, getSelects } from './aselect.utils';
+import { getSelect, getSelects, insertAfter } from './aselect.utils';
+import { Button } from './aselect.button';
+import { Listbox } from './aselect.listbox';
 
-export const ASelect = function() {
+const ASelect = function() {
 }
 
 ASelect.prototype = {
@@ -9,6 +11,10 @@ ASelect.prototype = {
   create: function(selector) {
     let select = getSelect(selector);
     if (!select) return false;
+    let button = new Button(select);
+    let listbox = new Listbox(select);
+    insertAfter(button.button, select);
+    insertAfter(listbox.listbox, button.button);
   },
   createAll: function(selects) {
     getSelects(selects).forEach(select => {
@@ -18,5 +24,7 @@ ASelect.prototype = {
 }
 
 if (typeof window !== "undefined") {
-  window.aselect = window.aselect || ASelect;
+  window.aselect = window.aselect || new ASelect();
 }
+
+export default ASelect;
